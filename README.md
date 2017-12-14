@@ -89,3 +89,14 @@ android {
         jumboMode true
     }
 ```
+
+1. if your Android project cause error like:  
+`com.android.build.api.transform.TransformException: com.android.ide.common.process.ProcessException: java.util.concurrent.ExecutionException: com.android.dex.DexIndexOverflowException: field ID not in [0, 0xffff]: 65536`
+add in your `app/build.gradle`:  
+```
+android {
+    defaultConfig {
+        multiDexEnabled true
+        ...
+    }
+```
