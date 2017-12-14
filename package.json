@@ -1,7 +1,7 @@
 {
     "name": "react-native-ca-mas",
     "version": "0.0.1",
-    "description": "",
+    "description": "CA MAS SDK for React-Native",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,5 +25,5 @@
     ],
     "peerDependencies": {
         "react-native": "^0.49.5"
-    },
+    }
 }
