@@ -1,0 +1,29 @@
+{
+    "name": "CAMASTestApp",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start",
+        "cli": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+        "rn-link": "node node_modules/react-native/local-cli/cli.js link",
+        "rn-unlink": "node node_modules/react-native/local-cli/cli.js unlink",
+        "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+        "android": "node node_modules/react-native/local-cli/cli.js run-android",
+        "android:clean": "cd android && ./gradlew react-native-ca-mas:clean; cd ..",
+        "test": "jest"
+    },
+    "dependencies": {
+        "react": "16.0.0-beta.5",
+        "react-native": "0.49.3",
+        "react-native-ca-mas": "../../../react-native-ca-mas"
+    },
+    "devDependencies": {
+        "babel-jest": "21.2.0",
+        "babel-preset-react-native": "4.0.0",
+        "jest": "21.2.1",
+        "react-test-renderer": "16.0.0-beta.5"
+    },
+    "jest": {
+        "preset": "react-native"
+    }
+}

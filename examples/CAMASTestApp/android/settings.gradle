@@ -1,0 +1,5 @@
+rootProject.name = 'CAMASTestApp'
+include ':react-native-ca-mas'
+project(':react-native-ca-mas').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-ca-mas/android')
+
+include ':app'
