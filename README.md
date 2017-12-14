@@ -45,6 +45,21 @@ Open Xcode's "General" tab in your project and add the all `.framework` of the `
 
 3. Put your `msso_config.json` in `ios/`. [Reference](http://mas.ca.com/docs/ios/1.5.00/guides/#step-3-add-the-msso_configjson-file)
 
+4. Open your React-Native project iOS with Xcode, click in "Add Files" and select your `ios/msso_config.json`.
+
+5. Append the following lines to `AppDelegate.m`:
+```
+#import <MASFoundation/MASFoundation.h> // <- this line
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // other codes
+
+    [MAS startWithDefaultConfiguration:YES completion:^(BOOL completed, NSError *error) { }]; // <- this line
+
+    return YES;
+```
+
 #### Android
 1. In your project, update `app/build.gradle`:
 ```
@@ -65,12 +80,12 @@ android {
 
 3. Append the following lines to `MainApplication.java`:
 ```
-import com.ca.mas.foundation.MAS;
+import com.ca.mas.foundation.MAS; // <- this line
 
   @Override
   public void onCreate() {
     super.onCreate();
-    MAS.start(getApplicationContext());
+    MAS.start(getApplicationContext()); // <- this line
     // other methods
   }
 ```
