@@ -1,4 +1,5 @@
 #import "RNCaMas.h"
+#import <React/RCTLog.h>
 
 #import <MASFoundation/MASFoundation.h>
 #import <MASConnecta/MASConnecta.h>
@@ -15,6 +16,17 @@ RCT_EXPORT_MODULE(CaMAS)
 
 NSString *E_JSON_PARSE_ERROR = @"E_JSON_PARSE_ERROR";
 NSString *E_REQUEST_ERROR = @"E_REQUEST_ERROR";
+
++ (NSDictionary*) treatResponse:(NSDictionary *)responseInfo {
+    NSMutableDictionary *resTreated = [[NSMutableDictionary alloc] init];
+    if ([responseInfo objectForKey:@"MASResponseInfoBodyInfoKey"]) {
+        resTreated[@"body"] = [responseInfo objectForKey:@"MASResponseInfoBodyInfoKey"];
+    }
+    if ([responseInfo objectForKey:@"MASResponseInfoHeaderInfoKey"]) {
+        resTreated[@"headers"] = [responseInfo objectForKey:@"MASResponseInfoHeaderInfoKey"];
+    }
+    return resTreated;
+}
 
 RCT_EXPORT_METHOD(debug)
 {
@@ -41,7 +53,7 @@ RCT_EXPORT_METHOD(invoke:(NSString *)path options:(NSDictionary *)options resolv
     }
 
     method = [method uppercaseString];
-    if ([method isEqualToString:@"GET"]) {
+    if ([method isEqualToString:@"GET"] || [method isEqualToString:@""]) {
         [MAS getFrom
             :path
             withParameters:nil
@@ -51,7 +63,7 @@ RCT_EXPORT_METHOD(invoke:(NSString *)path options:(NSDictionary *)options resolv
             if (error) {
                 reject(E_REQUEST_ERROR, error.localizedDescription, error);
             } else {
-                resolve(responseInfo);
+                resolve([RNCaMas treatResponse:responseInfo]);
             }
         }];
     } else if ([method isEqualToString:@"POST"]) {
@@ -64,7 +76,7 @@ RCT_EXPORT_METHOD(invoke:(NSString *)path options:(NSDictionary *)options resolv
             if (error) {
                 reject(E_REQUEST_ERROR, error.localizedDescription, error);
             } else {
-                resolve(responseInfo);
+                resolve([RNCaMas treatResponse:responseInfo]);
             }
         }];
     } else if ([method isEqualToString:@"PUT"]) {
@@ -77,7 +89,7 @@ RCT_EXPORT_METHOD(invoke:(NSString *)path options:(NSDictionary *)options resolv
             if (error) {
                 reject(E_REQUEST_ERROR, error.localizedDescription, error);
             } else {
-                resolve(responseInfo);
+                resolve([RNCaMas treatResponse:responseInfo]);
             }
         }];
     } else if ([method isEqualToString:@"DELETE"]) {
@@ -90,7 +102,7 @@ RCT_EXPORT_METHOD(invoke:(NSString *)path options:(NSDictionary *)options resolv
             if (error) {
                 reject(E_REQUEST_ERROR, error.localizedDescription, error);
             } else {
-                resolve(responseInfo);
+                resolve([RNCaMas treatResponse:responseInfo]);
             }
         }];
     } else {
