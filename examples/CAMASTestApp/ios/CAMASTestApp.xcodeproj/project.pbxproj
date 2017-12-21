@@ -44,6 +44,7 @@
 		340C638E1FE1FD4A00C5318D /* MASStorage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 340C63851FE1FD4A00C5318D /* MASStorage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		340C638F1FE1FD4A00C5318D /* MASUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340C63861FE1FD4A00C5318D /* MASUI.framework */; };
 		340C63901FE1FD4A00C5318D /* MASUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 340C63861FE1FD4A00C5318D /* MASUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		344E7AA21FB6456700CDEC75 /* msso_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 344E7AA11FB6456700CDEC75 /* msso_config.json */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		78F6CC1CD69E4A06979A9664 /* libRNCaMas.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC0D8616BF844A48EAE6064 /* libRNCaMas.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -351,6 +352,7 @@
 		340C63841FE1FD4A00C5318D /* MASIdentityManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASIdentityManagement.framework; path = ../../../ios/frameworks/MASIdentityManagement.framework; sourceTree = "<group>"; };
 		340C63851FE1FD4A00C5318D /* MASStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASStorage.framework; path = ../../../ios/frameworks/MASStorage.framework; sourceTree = "<group>"; };
 		340C63861FE1FD4A00C5318D /* MASUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASUI.framework; path = ../../../ios/frameworks/MASUI.framework; sourceTree = "<group>"; };
+		344E7AA11FB6456700CDEC75 /* msso_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = msso_config.json; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		68B7769346F347B6A27F1661 /* RNCaMas.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCaMas.xcodeproj; path = "../node_modules/react-native-ca-mas/ios/RNCaMas.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 		13B07FAE1A68108700A75B9A /* CAMASTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				344E7AA11FB6456700CDEC75 /* msso_config.json */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1051,6 +1054,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				344E7AA21FB6456700CDEC75 /* msso_config.json in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
