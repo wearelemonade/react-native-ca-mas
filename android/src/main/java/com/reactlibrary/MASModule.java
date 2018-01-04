@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class MASModule extends ReactContextBaseJavaModule {
 
@@ -55,12 +56,21 @@ public class MASModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void invoke(final String path, final ReadableMap optionsJson, final Promise promise) {
+    public void invoke(final String fullPath, final ReadableMap optionsJson, final Promise promise) {
         try {
-            JSONObject optionsObject = Utils.convertReadableMapToJson(optionsJson);
+            final JSONObject optionsObject = Utils.convertReadableMapToJson(optionsJson);
 
-            Uri uri = new Uri.Builder().path(path).build();
-            MASRequestBuilder requestBuilder = new MASRequest.MASRequestBuilder(uri);
+            final Uri pathUri = Uri.parse(fullPath);
+            final String path = pathUri.getPath();
+            final Set<String> queryNames = pathUri.getQueryParameterNames();
+
+            final Uri.Builder uriBuider = new Uri.Builder().path(path);
+
+            // queries
+            for(String queryName : queryNames) {
+                final String value = pathUri.getQueryParameter(queryName);
+                uriBuider.appendQueryParameter(queryName, value);
+            }
 
             // method
             String method = "";
@@ -71,16 +81,19 @@ public class MASModule extends ReactContextBaseJavaModule {
             // body
             MASRequestBody mASRequestBody = null;
             if (optionsObject.has("body") && !optionsObject.isNull("body")) {
-                JSONObject bodyObject = optionsObject.getJSONObject("body");
+                final JSONObject bodyObject = optionsObject.getJSONObject("body");
                 mASRequestBody = MASRequestBody.jsonBody(bodyObject);
             }
+
+            final Uri uri = uriBuider.build();
+            MASRequestBuilder requestBuilder = new MASRequest.MASRequestBuilder(uri);
 
             // header
             JSONObject headerObject = null;
             if (optionsObject.has("header") && !optionsObject.isNull("header")) {
                 headerObject = optionsObject.getJSONObject("header");
 
-                Iterator<String> headerKeysItr = headerObject.keys();
+                final Iterator<String> headerKeysItr = headerObject.keys();
                 while (headerKeysItr.hasNext()) {
                     final String key = headerKeysItr.next();
                     final String value = headerObject.getString(key);
@@ -107,13 +120,13 @@ public class MASModule extends ReactContextBaseJavaModule {
                     break;
             }
 
-            MASRequest request = requestBuilder.build();
+            final MASRequest request = requestBuilder.build();
 
             // make request
             MAS.invoke(request, new MASCallback<MASResponse<JSONObject>>(){
                 @Override
                 public void onSuccess(MASResponse<JSONObject> result) {
-                    JSONObject resultJson = result.getBody().getContent();
+                    final JSONObject resultJson = result.getBody().getContent();
                     try {
                         promise.resolve(Utils.convertJsonToWritableMap(resultJson));
                     } catch(JSONException e) {
@@ -124,17 +137,17 @@ public class MASModule extends ReactContextBaseJavaModule {
                 @Override
                 public void onError(Throwable e) {
                     if (e.getCause() instanceof TargetApiException) {
-                        TargetApiException exception = (TargetApiException) e.getCause();
-                        Map headers = exception.getResponse().getHeaders();
-                        int statusCode = exception.getResponse().getResponseCode();
-                        String message = exception.getResponse().getResponseMessage();
+                        final TargetApiException exception = (TargetApiException) e.getCause();
+                        final Map headers = exception.getResponse().getHeaders();
+                        final int statusCode = exception.getResponse().getResponseCode();
+                        final String message = exception.getResponse().getResponseMessage();
 
                         JSONObject rawContentJson;
                         try {
-                            String rawContent = new String(exception.getResponse().getBody().getRawContent());
+                            final String rawContent = new String(exception.getResponse().getBody().getRawContent());
                             rawContentJson = new JSONObject(rawContent);
 
-                            Map<String, Object> response = new HashMap<>();
+                            final Map<String, Object> response = new HashMap<>();
                             response.put("headers", headers);
                             response.put("status_code", statusCode);
                             response.put("message", message);
