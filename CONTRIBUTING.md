@@ -15,7 +15,9 @@ adicione *react-native-ca-mas* nas dependecias do `package.json`:
 Delete `node_modules/react-native-ca-mas` do CAMASTestApp  
 `rm -rf node_modules/react-native-ca-mas`  
 Crie um link simbolico para o repo:  
-`ln -rs ./../react-native-ca-mas/ node_modules/`
+`ln -rs ./../../ node_modules/react-native-ca-mas`  
+Limpe o projeto:  
+`cd android && ./gradlew clean; cd ..`
 
 4. Rode o projeto de teste CAMASTestApp  
 `react-native link`  
