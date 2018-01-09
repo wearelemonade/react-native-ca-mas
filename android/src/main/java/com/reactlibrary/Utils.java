@@ -40,6 +40,8 @@ public final class Utils {
                 map.putDouble(key, (Double) value);
             } else if (value instanceof String)  {
                 map.putString(key, (String) value);
+            } else if (value == null) {
+                map.putNull(key);
             } else {
                 map.putString(key, value.toString());
             }
@@ -64,7 +66,7 @@ public final class Utils {
                 array.pushDouble((Double) value);
             } else if (value instanceof String)  {
                 array.pushString((String) value);
-            } else {
+            } else if (value != null) {
                 array.pushString(value.toString());
             }
         }
@@ -150,8 +152,10 @@ public final class Utils {
                 wMap.putInt(key, (Integer) value);
             } else if (value instanceof  Double) {
                 wMap.putDouble(key, (Double) value);
-            } else if (value instanceof String)  {
+            } else if (value instanceof String) {
                 wMap.putString(key, (String) value);
+            } else if (value == null) {
+                wMap.putNull(key);
             } else {
                 wMap.putString(key, value.toString());
             }
@@ -183,7 +187,7 @@ public final class Utils {
                 wArray.pushDouble((Double) value);
             } else if (value instanceof String)  {
                 wArray.pushString((String) value);
-            } else {
+            } else if (value != null) {
                 wArray.pushString(value.toString());
             }
         }
