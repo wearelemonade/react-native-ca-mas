@@ -126,11 +126,26 @@ public class MASModule extends ReactContextBaseJavaModule {
             MAS.invoke(request, new MASCallback<MASResponse<JSONObject>>(){
                 @Override
                 public void onSuccess(MASResponse<JSONObject> result) {
-                    final JSONObject resultJson = result.getBody().getContent();
+                    final Map headers = result.getHeaders();
+                    final int statusCode = result.getResponseCode();
+                    final String message = result.getResponseMessage();
+
                     try {
-                        promise.resolve(Utils.convertJsonToWritableMap(resultJson));
-                    } catch(JSONException e) {
-                        promise.reject(E_JSON_PARSE_ERROR, e);
+                        JSONObject contentJson;
+                        try {
+                            contentJson = result.getBody().getContent();
+                        } catch(Exception eJson) {
+                            contentJson = null;
+                        }
+
+                        final Map<String, Object> response = new HashMap<>();
+                        response.put("headers", headers);
+                        response.put("status_code", statusCode);
+                        response.put("message", message);
+                        response.put("body", contentJson);
+                        promise.resolve(Utils.convertMapToWritableMap(response));
+                    } catch(JSONException eJson) {
+                        promise.reject(E_JSON_PARSE_ERROR, eJson);
                     }
                 }
 
@@ -142,16 +157,15 @@ public class MASModule extends ReactContextBaseJavaModule {
                         final int statusCode = exception.getResponse().getResponseCode();
                         final String message = exception.getResponse().getResponseMessage();
 
-                        JSONObject rawContentJson;
                         try {
                             final String rawContent = new String(exception.getResponse().getBody().getRawContent());
-                            rawContentJson = new JSONObject(rawContent);
+                            final JSONObject rawContentJson = new JSONObject(rawContent);
 
                             final Map<String, Object> response = new HashMap<>();
                             response.put("headers", headers);
                             response.put("status_code", statusCode);
                             response.put("message", message);
-                            response.put("data", rawContentJson);
+                            response.put("body", rawContentJson);
                             promise.resolve(Utils.convertMapToWritableMap(response));
                         } catch(JSONException eJson) {
                             promise.reject(E_JSON_PARSE_ERROR, eJson);
