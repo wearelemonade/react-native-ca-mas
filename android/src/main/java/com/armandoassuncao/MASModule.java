@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.armandoassuncao;
 
 import android.net.Uri;
 

@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.armandoassuncao;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableType;
