@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.armandoassuncao;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -8,7 +8,7 @@ import com.facebook.react.bridge.Promise;
 import com.ca.mas.foundation.MASUser;
 import com.ca.mas.foundation.MASCallback;
 
-import com.reactlibrary.Utils;
+import com.armandoassuncao.Utils;
 
 public class MASUserModule extends ReactContextBaseJavaModule {
 
