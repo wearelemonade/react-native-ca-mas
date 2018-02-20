@@ -14,6 +14,7 @@ public class RNCaMasPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Arrays.<NativeModule>asList(
+            new MASDeviceModule(reactContext),
             new MASModule(reactContext),
             new MASUserModule(reactContext)
         );
