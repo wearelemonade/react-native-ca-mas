@@ -88,15 +88,15 @@ public class MASModule extends ReactContextBaseJavaModule {
             final Uri uri = uriBuider.build();
             MASRequestBuilder requestBuilder = new MASRequest.MASRequestBuilder(uri);
 
-            // header
-            JSONObject headerObject = null;
-            if (optionsObject.has("header") && !optionsObject.isNull("header")) {
-                headerObject = optionsObject.getJSONObject("header");
+            // headers
+            JSONObject headersObject = null;
+            if (optionsObject.has("headers") && !optionsObject.isNull("headers")) {
+                headersObject = optionsObject.getJSONObject("headers");
 
-                final Iterator<String> headerKeysItr = headerObject.keys();
+                final Iterator<String> headerKeysItr = headersObject.keys();
                 while (headerKeysItr.hasNext()) {
                     final String key = headerKeysItr.next();
-                    final String value = headerObject.getString(key);
+                    final String value = headersObject.getString(key);
                     requestBuilder.header(key, value);
                 }
             }
@@ -140,7 +140,7 @@ public class MASModule extends ReactContextBaseJavaModule {
 
                         final Map<String, Object> response = new HashMap<>();
                         response.put("headers", headers);
-                        response.put("status_code", statusCode);
+                        response.put("statusCode", statusCode);
                         response.put("message", message);
                         response.put("body", contentJson);
                         promise.resolve(Utils.convertMapToWritableMap(response));
