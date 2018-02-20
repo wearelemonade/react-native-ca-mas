@@ -36,5 +36,5 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.ca:mas:1.5.00'
+    compile 'com.ca:mas:1.6.00'
 }

@@ -41,7 +41,7 @@
 Open Xcode's "General" tab in your project and add the all `.framework` of the `../node_modules/react-native-ca-mas/ios/frameworks` folder in "Embedded Binaries" setting.  
 
 2. do steps 2 of the official documentation:  
-[step 2](http://mas.ca.com/docs/ios/1.5.00/guides/#step-2-configure-xcode-properties-for-the-mobile-sdk)  
+[step 2](http://mas.ca.com/docs/ios/1.6.00/guides/#step-2-configure-xcode-properties-for-the-mobile-sdk)  
 
 3. Put your `msso_config.json` in `ios/`. [Reference](http://mas.ca.com/docs/ios/1.5.00/guides/#step-3-add-the-msso_configjson-file)
 
