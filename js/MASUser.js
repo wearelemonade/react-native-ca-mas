@@ -16,4 +16,8 @@ CaMASUser.login = (username, password) => {
     return RNCaMASUser.login(username, password);
 }
 
+CaMASUser.logout = () => {
+    return RNCaMASUser.logout();
+}
+
 export default CaMASUser;

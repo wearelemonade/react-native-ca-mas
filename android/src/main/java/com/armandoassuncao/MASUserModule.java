@@ -15,6 +15,7 @@ public class MASUserModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext reactContext;
 
     private static final String E_LOGIN_ERROR = "E_LOGIN_ERROR";
+    private static final String E_LOGOUT_ERROR = "E_LOGOUT_ERROR";
 
     public MASUserModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -49,6 +50,26 @@ public class MASUserModule extends ReactContextBaseJavaModule {
             public void onError(Throwable e) {
                 promise.reject(E_LOGIN_ERROR, e);
                 //Handle the error
+            }
+        });
+    }
+
+    @ReactMethod
+    public void logout(final Promise promise) {
+        if (MASUser.getCurrentUser() == null) {
+            promise.resolve(true);
+            return;
+        }
+
+        MASUser.getCurrentUser().logout(new MASCallback<Void>() {
+            @Override
+            public void onSuccess(Void object) {
+                promise.resolve(true);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                promise.reject(E_LOGOUT_ERROR, e);
             }
         });
     }

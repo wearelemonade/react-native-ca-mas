@@ -163,7 +163,7 @@ public class MASModule extends ReactContextBaseJavaModule {
 
                             final Map<String, Object> response = new HashMap<>();
                             response.put("headers", headers);
-                            response.put("status_code", statusCode);
+                            response.put("statusCode", statusCode);
                             response.put("message", message);
                             response.put("body", rawContentJson);
                             promise.resolve(Utils.convertMapToWritableMap(response));
