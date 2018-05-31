@@ -14,6 +14,7 @@
 RCT_EXPORT_MODULE(CaMASUser)
 
 NSString *E_LOGIN_ERROR = @"E_LOGIN_ERROR";
+NSString *E_LOGOUT_ERROR = @"E_LOGOUT_ERROR";
 
 RCT_EXPORT_METHOD(getAuthCredentialsType
     :(RCTPromiseResolveBlock)resolve
@@ -41,6 +42,19 @@ RCT_EXPORT_METHOD(login
             reject(E_LOGIN_ERROR, error.localizedDescription, error);
         }
         else {
+            resolve(@(completed));
+        }
+    }];
+}
+
+RCT_EXPORT_METHOD(logout
+      :(RCTPromiseResolveBlock)resolve
+      rejecter:(RCTPromiseRejectBlock)reject
+) {
+    [[MASUser currentUser] logoutWithCompletion:^(BOOL completed, NSError * _Nullable error) {
+        if (error) {
+            reject(E_LOGOUT_ERROR, error.localizedDescription, error);
+        } else {
             resolve(@(completed));
         }
     }];
