@@ -7,7 +7,7 @@ import com.facebook.react.bridge.Promise;
 
 import com.ca.mas.foundation.MASUser;
 import com.ca.mas.foundation.MASCallback;
-
+import org.json.JSONException;
 import com.armandoassuncao.Utils;
 
 public class MASUserModule extends ReactContextBaseJavaModule {
@@ -16,6 +16,7 @@ public class MASUserModule extends ReactContextBaseJavaModule {
 
     private static final String E_LOGIN_ERROR = "E_LOGIN_ERROR";
     private static final String E_LOGOUT_ERROR = "E_LOGOUT_ERROR";
+    private static final String E_GET_USER_ERROR = "E_GET_USER_ERROR";
 
     public MASUserModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -34,7 +35,17 @@ public class MASUserModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getCurrentUser(final Promise promise) {
-        promise.resolve(MASUser.getCurrentUser());
+        MASUser user = MASUser.getCurrentUser();
+        if (user == null) {
+            promise.resolve(null);
+        } else {
+            try {
+                WritableMap map = Utils.convertJsonToWritableMap(user.getAsJSONObject());
+                promise.resolve(map);
+            } catch (JSONException e) {
+                promise.reject(E_GET_USER_ERROR, e);
+            }
+        }
     }
 
     @ReactMethod
