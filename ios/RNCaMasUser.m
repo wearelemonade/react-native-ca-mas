@@ -1,4 +1,5 @@
 #import "RNCaMasUser.h"
+#import "NSObject+NSDictionary.h"
 
 #import <MASFoundation/MASFoundation.h>
 #import <MASConnecta/MASConnecta.h>
@@ -27,7 +28,7 @@ RCT_EXPORT_METHOD(getCurrentUser
     :(RCTPromiseResolveBlock)resolve
     rejecter:(RCTPromiseRejectBlock)reject
 ) {
-    resolve([MASUser currentUser]);
+    resolve([[MASUser currentUser] getDictionary]);
 }
 
 RCT_EXPORT_METHOD(login

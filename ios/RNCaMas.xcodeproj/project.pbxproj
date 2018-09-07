@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		340C622E1FB632F400C5318D /* RNCaMasUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 340C622D1FB632F400C5318D /* RNCaMasUser.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNCaMas.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNCaMas.m */; };
+		BE8D32D22142951C006FFC8D /* NSObject+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8D32D12142951C006FFC8D /* NSObject+NSDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,8 @@
 		340C62381FB631B600C5318D /* frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = frameworks; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNCaMas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCaMas.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNCaMas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCaMas.m; sourceTree = "<group>"; };
+		BE8D32D0214294FF006FFC8D /* NSObject+NSDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSDictionary.h"; sourceTree = "<group>"; };
+		BE8D32D12142951C006FFC8D /* NSObject+NSDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSDictionary.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +62,18 @@
 				340C622D1FB632F400C5318D /* RNCaMasUser.m */,
 				B3E7B5881CC2AC0600A0062D /* RNCaMas.h */,
 				B3E7B5891CC2AC0600A0062D /* RNCaMas.m */,
+				BE8D32CF214294DE006FFC8D /* Categories */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		BE8D32CF214294DE006FFC8D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				BE8D32D0214294FF006FFC8D /* NSObject+NSDictionary.h */,
+				BE8D32D12142951C006FFC8D /* NSObject+NSDictionary.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE8D32D22142951C006FFC8D /* NSObject+NSDictionary.m in Sources */,
 				340C622E1FB632F400C5318D /* RNCaMasUser.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNCaMas.m in Sources */,
 			);
